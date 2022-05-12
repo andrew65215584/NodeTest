@@ -1,0 +1,20 @@
+{
+  "name": "new-folder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start1": "nodemon task1",
+    "start2": "nodemon task2"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
+  }
+}
