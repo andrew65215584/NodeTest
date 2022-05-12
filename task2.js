@@ -1,10 +1,18 @@
 import fs from 'fs';
 import csv from 'csvtojson';
+import { pipeline } from 'stream';
 
 const file = './csv/data.csv';
 const resFile = './csv/text.txt';
 
-const readStream = fs.createReadStream(file);
-const writeStream = fs.createWriteStream(resFile);
-
-readStream.pipe(csv()).pipe(writeStream);
+pipeline(
+    csv().fromFile(file),
+    fs.createWriteStream(resFile),
+    (err) => {
+        if (err) {
+            console.error('Pipeline failed.', err);
+        } else {
+            console.log('Pipeline succeeded.');
+        }
+    }
+);
