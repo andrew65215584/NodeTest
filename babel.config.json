@@ -1,5 +1,8 @@
 {
     "presets": [
         "@babel/preset-env"
-    ]
+    ],
+    "scripts": {
+        "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'"
+    }
 }
