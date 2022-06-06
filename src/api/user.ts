@@ -1,7 +1,6 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { validate } from '../validator';
 import { userSchema } from '../model/user';
-import Db from '../database';
 import { postUser } from '../controller/user/postUser';
 import { getUsersOrWithQuery } from '../controller/user/getUsers';
 import { getUserById } from '../controller/user/getUserById';

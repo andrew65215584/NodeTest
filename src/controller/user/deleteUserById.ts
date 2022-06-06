@@ -12,4 +12,3 @@ export const deleteUserById = (req: Request, res: Response) => {
         res.status(404).send({ message: 'Such user doesn`t exist' })
     }
 }
-

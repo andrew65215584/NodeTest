@@ -2,12 +2,11 @@
   "name": "new-folder",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
-  "type": "module",
+  "main": "./src/app.ts",
   "scripts": {
     "start1": "nodemon task1",
     "start2": "nodemon task2",
-    "dev": "nodemon  src/app"
+    "dev": "nodemon  ./src/app.ts"
   },
   "author": "",
   "license": "ISC",
