@@ -20,7 +20,8 @@
     "noUnusedParameters": false /* Report errors on unused parameters. */,
     "noImplicitReturns": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "useUnknownInCatchVariables": false
   },
   "exclude": ["node_modules", "build", "tests"],
   "include": ["./**/*"]
