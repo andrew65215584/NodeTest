@@ -1,26 +1,44 @@
-import { SavedUSer, User } from "../types";
+import { SavedUser, User } from "../types";
 import { UserModel } from '../model/user';
 
 class UserServices {
 
-    private static async getOne(userLogin: string): Promise<User | null> {
+    static async getAll() {
         try {
-            const user = UserModel.findOne({ where: { login: userLogin } })
+            const users = await UserModel.findAll()
+            return users
+        } catch (error) {
+            console.log("🚀 ~ file: user.ts ~ line 12 ~ UserServices ~ create ~ error", error)
+            throw error.message
+        }
+    }
+    static async getOneByLogin(userLogin: string): Promise<SavedUser | null> {
+        try {
+            const user = await UserModel.findOne({ where: { login: userLogin } })
             return user
         } catch (error) {
             console.log("🚀 ~ file: user.ts ~ line 12 ~ UserServices ~ create ~ error", error)
-            return error.message
+            throw error.message
         }
     }
 
-    private static async create(user: User) {
+    static async getOneById(id: string): Promise<SavedUser | null> {
         try {
-            const newUser = UserModel.create(user)
-            console.log("🚀 ~ file: user.ts ~ line 8 ~ UserServices ~ create ~ newUser", newUser)
+            const user = await UserModel.findByPk(id)
+            return user
+        } catch (error) {
+            console.log("🚀 ~ file: user.ts ~ line 12 ~ UserServices ~ create ~ error", error)
+            throw error.message
+        }
+    }
+
+    static async create(user: User) {
+        try {
+            const newUser = await UserModel.create(user)
             return newUser
         } catch (error) {
             console.log("🚀 ~ file: user.ts ~ line 12 ~ UserServices ~ create ~ error", error)
-            return error.message
+            throw error.message
         }
     }
 }

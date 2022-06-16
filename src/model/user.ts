@@ -1,6 +1,7 @@
 import joi from 'joi';
 import { DataTypes, Model, Optional } from "sequelize"
 import { client } from '../services/db';
+import { SavedUser } from '../types';
 
 export const userSchema = joi.object({
     login: joi.string().required(),
@@ -39,4 +40,4 @@ const options = {
     updatedAt: "updated_at",
 };
 
-export const UserModel = User.init(userFields, options)
+export const UserModel = User.init<SavedUser, User>(userFields, options)

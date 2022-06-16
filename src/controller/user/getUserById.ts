@@ -1,10 +1,10 @@
-import Db from '../../database';
 import { Request, Response } from 'express';
+import UserServices from '../../services/user';
 
-export const getUserById = (req: Request, res: Response) => {
+export const getUserById = async (req: Request, res: Response) => {
     const userId = req.params.id;
 
-    const userInDb = Db.find(user => user.id === userId);
+    const userInDb = await UserServices.getOneById(userId);
 
     if (userInDb) {
         res.status(200).send(userInDb)

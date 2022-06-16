@@ -1,21 +1,14 @@
-import Db from '../../database';
 import { Request, Response } from 'express';
-import { v4 as uuid } from 'uuid';
+import UserServices from '../../services/user';
 
-export const postUser = (req: Request, res: Response) => {
+export const postUser = async (req: Request, res: Response) => {
     const newUser = req.body;
-    const userInDb = Db.find(user => user.login === newUser.login);
-
+    const userInDb = await UserServices.getOneByLogin(newUser.login)
     if (userInDb) {
         res.status(400).send('User already exyst')
     } else {
-        const user = {
-            id: uuid(),
-            ...newUser
-        }
-
-        Db.push(user)
-        res.status(201).json(user)
+        const savedUser = await UserServices.create(newUser)
+        res.status(201).json(savedUser)
     }
 }
 
