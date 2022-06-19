@@ -1,6 +1,5 @@
 import { Sequelize } from 'sequelize';
 import { UserModel } from '../model/user';
-import { User } from '../types';
 
 const MockerUsers = [
     { login: "1 login", password: '123', age: '15', isDeleted: false },
@@ -27,5 +26,6 @@ export const connectDb = async () => {
 
     } catch (error) {
         console.error('Unable to connect to the database:', error);
+        throw new Error('Unable connect to server')
     }
 }

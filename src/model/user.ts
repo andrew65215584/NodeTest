@@ -1,7 +1,7 @@
 import joi from 'joi';
-import { DataTypes, Model, Optional } from "sequelize"
+import { DataTypes, Model, Sequelize } from "sequelize";
 import { client } from '../services/db';
-import { SavedUser } from '../types';
+import { SavedUser, User as InputUser } from '../types';
 
 export const userSchema = joi.object({
     login: joi.string().required(),
@@ -10,7 +10,13 @@ export const userSchema = joi.object({
     isDeleted: joi.boolean().required()
 })
 
-class User extends Model { }
+class User extends Model<SavedUser, InputUser> {
+    public id!: string;
+    public login!: string;
+    public password!: string;
+    public age!: string;
+    public isDeleted!: boolean;
+}
 
 
 const userFields = {
@@ -20,7 +26,7 @@ const userFields = {
         primaryKey: true
     },
     age: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
     },
     login: {
         type: DataTypes.STRING
@@ -39,5 +45,5 @@ const options = {
     createdAt: "created_at",
     updatedAt: "updated_at",
 };
-
-export const UserModel = User.init<SavedUser, User>(userFields, options)
+ 
+export const UserModel = User.init<SavedUser, User>(userFields, options) 
